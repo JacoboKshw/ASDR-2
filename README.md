@@ -76,6 +76,6 @@ C → siete B | ε
 
 ---
 
-## e) La gramatica es LL(1)?
+## d) La gramatica es LL(1)?
 
 La gramática no es LL(1). Si miramos los conjuntos de predicción, encontramos varios problemas: en A', tanto `A' → cinco C seis uno tres B C A'` como `A' → ε` tienen el token `cinco`, y en B, las producciones `B → A cinco C seis` y `B → ε` también comparten varios tokens como `cinco`, `tres` y `uno`. Esto significa que cuando el analizador ve alguno de esos tokens, no sabe qué producción elegir, y esa ambigüedad es precisamente lo que impide que la gramática sea LL(1).
