@@ -4,14 +4,14 @@
 
 ## Gramática original
 
-
+```
 S → A B C | D E
 A → dos B tres | ε
 B → B cuatro C cinco | ε
 C → seis A B | ε
 D → uno A E | B
 E → tres
-
+```
 
 ---
 
@@ -24,16 +24,16 @@ Solo **B** tiene recursividad directa: B → B cuatro C cinco | ε
 
 Aplicando la fórmula A → β A' y A' → α A' | ε:
 
-
+```
 B  → B'
 B' → cuatro C cinco B' | ε
-
+```
 
 El resto de no terminales (S, A, C, D, E) no tienen recursividad, quedan igual.
 
 ### Gramática resultante
 
-
+```
 S  → A B C | D E
 A  → dos B tres | ε
 B  → B'
@@ -41,7 +41,7 @@ B' → cuatro C cinco B' | ε
 C  → seis A B | ε
 D  → uno A E | B
 E  → tres
-
+```
 
 ---
 
@@ -61,12 +61,12 @@ La gramática no es LL(1) porque hay un problema en el no terminal S. Básicamen
 
 ## Gramática original
 
-
+```
 S → B uno | dos C | ε
 A → S tres B C | cuatro | ε
 B → A cinco C seis | ε
 C → siete B | ε
-
+```
 
 ---
 
@@ -86,12 +86,12 @@ La gramática no es LL(1). Si miramos los conjuntos de predicción, encontramos 
 
 ## Gramática original
 
-
+```
 S → A B C | S uno
 A → dos B C | ε
 B → C tres | ε
 C → cuatro B | ε
-
+```
 
 ---
 
@@ -104,22 +104,24 @@ Solo **S** tiene recursividad directa: S → A B C | S uno
 
 Aplicando la fórmula A → β A' y A' → α A' | ε:
 
-
+```
 S  → A B C S'
 S' → uno S' | ε
-
+```
 
 El resto de no terminales (A, B, C) no tienen recursividad, quedan igual.
 
 ### Gramática resultante
 
-
+```
 S  → A B C S'
 S' → uno S' | ε
 A  → dos B C | ε
 B  → C tres | ε
 C  → cuatro B | ε
+```
 
+---
 
 ## b) PRIMEROS, SIGUIENTES y PREDICCIÓN
 
