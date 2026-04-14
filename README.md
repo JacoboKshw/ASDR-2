@@ -76,6 +76,55 @@ C → siete B | ε
 
 ---
 
-## d) La gramatica es LL(1)?
+## e) La gramatica es LL(1)?
 
 La gramática no es LL(1). Si miramos los conjuntos de predicción, encontramos varios problemas: en A', tanto `A' → cinco C seis uno tres B C A'` como `A' → ε` tienen el token `cinco`, y en B, las producciones `B → A cinco C seis` y `B → ε` también comparten varios tokens como `cinco`, `tres` y `uno`. Esto significa que cuando el analizador ve alguno de esos tokens, no sabe qué producción elegir, y esa ambigüedad es precisamente lo que impide que la gramática sea LL(1).
+
+---
+
+- Ejercicio 3
+
+## Gramática original
+
+```
+S → A B C | S uno
+A → dos B C | ε
+B → C tres | ε
+C → cuatro B | ε
+```
+
+---
+
+## a) Eliminar recursividad por la izquierda
+
+Solo **S** tiene recursividad directa: `S → A B C | S uno`
+
+- **β** = `A B C` (producción no recursiva)
+- **α** = `uno`
+
+Aplicando la fórmula `A → β A'` y `A' → α A' | ε`:
+
+```
+S  → A B C S'
+S' → uno S' | ε
+```
+
+El resto de no terminales (A, B, C) no tienen recursividad, quedan igual.
+
+### Gramática resultante
+
+```
+S  → A B C S'
+S' → uno S' | ε
+A  → dos B C | ε
+B  → C tres | ε
+C  → cuatro B | ε
+```
+## b) PRIMEROS,SIGUIENTES Y PREDICCION
+
+<img width="1040" height="791" alt="imagen" src="https://github.com/user-attachments/assets/3ae13412-0847-43cf-a97f-e1f345788254" />
+
+## La gramatica el LL(1)?
+
+La gramática no es LL(1) porque en B y C los conjuntos de predicción de sus producciones se solapan. Cuando el analizador ve cuatro estando en B o C, no puede decidir de forma determinista si aplicar la producción no vacía o la producción ε.
+
