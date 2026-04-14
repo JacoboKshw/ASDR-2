@@ -59,25 +59,23 @@ La gramática no es LL(1) porque hay un problema en el no terminal S. Básicamen
 
 - Ejercicio 2
 
-  ## Gramatica original
+## Gramática original
 
-  ```
-S → A B C | D E
-A → dos B tres | ε
-B  → B'
-B' → cuatro C cinco B' | ε
-C  → seis A B | ε
-D  → uno A E | B
-E  → tres
- ```
-
-## a,b,c) PRIMEROS, SIGUIENTES y PREDICCIÓN
-
- <img width="1855" height="1006" alt="imagen" src="https://github.com/user-attachments/assets/2b882ed9-f96e-4dd2-bb20-60ac50f064e4" />
+```
+S → B uno | dos C | ε
+A → S tres B C | cuatro | ε
+B → A cinco C seis | ε
+C → siete B | ε
+```
 
 ---
 
-## d) La gramatica es LL(1)?
+## a,b,c) PRIMEROS, SIGUIENTES y PREDICCIÓN
 
-La gramática no es LL(1). Si miramos los conjuntos de predicción, encontramos varios problemas: en Ap, tanto Ap → cinco C seis uno tres B C Ap como Ap → ε tienen el token cinco, y en B, las producciones B → A cinco C seis y B → ε también comparten varios tokens como cinco, tres y uno. Esto significa que cuando el analizador ve alguno de esos tokens, no sabe qué producción elegir, y esa ambigüedad es precisamente lo que impide que la gramática sea LL(1).
+<img width="1855" height="1006" alt="imagen" src="https://github.com/user-attachments/assets/2b882ed9-f96e-4dd2-bb20-60ac50f064e4" />
 
+---
+
+## e) La gramatica es LL(1)?
+
+La gramática no es LL(1). Si miramos los conjuntos de predicción, encontramos varios problemas: en A', tanto `A' → cinco C seis uno tres B C A'` como `A' → ε` tienen el token `cinco`, y en B, las producciones `B → A cinco C seis` y `B → ε` también comparten varios tokens como `cinco`, `tres` y `uno`. Esto significa que cuando el analizador ve alguno de esos tokens, no sabe qué producción elegir, y esa ambigüedad es precisamente lo que impide que la gramática sea LL(1).
